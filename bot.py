@@ -8,7 +8,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from datetime import datetime
 import pytz
 from threading import Thread
-import google.generativeai as genai
+import google.genai as genai
 
 # ================= Load Environment Variables =================
 load_dotenv()
@@ -20,8 +20,7 @@ if not TOKEN or not CHANNEL_ID or not GEMINI_API_KEY:
     raise ValueError("Missing environment variables. Please check your .env file.")
 
 # ================= Configure Gemini API =================
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 # ================= Flask Web Server =================
 app = Flask(__name__)
@@ -65,8 +64,12 @@ def translate_joke_to_vietnamese(joke_en: str) -> str:
     f"Câu joke: {joke_en}"
     )
     try:
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=prompt
+        )
         if response and response.text:
+            print(response.text)
             return response.text.strip()
     except Exception as e:
         print(f"Gemini translation error: {e}")
