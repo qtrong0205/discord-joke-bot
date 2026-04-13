@@ -4,3 +4,4 @@ python-dotenv
 flask
 apscheduler
 pytz
+google-generativeai
