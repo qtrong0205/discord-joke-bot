@@ -65,7 +65,7 @@ def translate_joke_to_vietnamese(joke_en: str) -> str:
     )
     try:
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-3-flash-preview",
             contents=prompt
         )
         if response and response.text:
