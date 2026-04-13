@@ -40,7 +40,7 @@ def get_joke():
             # Lấy ngày hiện tại theo múi giờ Việt Nam
             tz = pytz.timezone("Asia/Ho_Chi_Minh")
             current_date = datetime.now(tz).strftime("%A, %d/%m/%Y")
-            return f"🤡 **Chào mấy thằng nhóc, tao là Vua Hề Bảo hôm nay là {current_date}**\n{data['setup']}\n{data['punchline']}"
+            return f"🤡 **Chào mấy thằng nhóc, tao là Vua Hề Bảo hôm nay là {current_date}**\nTa có một câu joke có mấy nhóc đây\n{data['setup']}\n{data['punchline']}🤣🤣"
     except Exception:
         pass
     return "😂 Hôm nay không lấy được joke, nhưng chúc bạn một ngày vui vẻ!"
